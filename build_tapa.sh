@@ -1,5 +1,7 @@
 #!/bin/bash
 
+SCRIPT_CWD=$(pwd)
+
 set -e
 
 [ -d tapa ]
@@ -20,4 +22,12 @@ $CMAKE -GNinja -S . -Bbuild \
 
 cd build
 ninja
+ninja test
 
+cd $SCRIPT_CWD
+
+python3.10 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install pip --upgrade
+
+python3 -m pip install -e tapa/backend/python

@@ -19,3 +19,5 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$tapa_dir/build
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$frt_dir/build
 
 ./$benchmark
+
+echo "C simulation completed!" && rm ./$benchmark

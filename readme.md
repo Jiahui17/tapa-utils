@@ -31,6 +31,30 @@ source /path/to/vitis/settings64.sh
 cd /opt/XRT/build && ./build.sh
 ```
 
+## Remove hardcoded LLVM header locations
+
+
+Go to `tapa/backend/python/tapa/steps` and change the hardcoded location to
+where you install `llvm-17`
+
+```diff 
+---  system_includes.extend(
+---      ['-isystem', f"/usr/lib/llvm-{match[1]}/include/c++/v1/"]) 
+---  system_includes.extend(
+---      ['-isystem', f"/usr/include/clang/{match[1]}/include/"])
+---  system_includes.extend(['-isystem', f"/usr/lib/clang/{match[1]}/include/"])
++++  system_includes.extend(
++++      ['-isystem', f"/opt/llvm-17/clang/lib/Headers"])
++++  system_includes.extend(
++++      ['-isystem', f"/opt/llvm-17/libcxx/include"])
+```
+
+Assuming that we put llvm in `/opt/llvm-17`
+
+
+
+
+
 ## Building fpga-runtime and TAPA
 
 Here I wanted to avoid installing anything system-wide since I assume that they
@@ -47,6 +71,8 @@ bash build_frt.sh
 git clone git@github.com:UCLA-VAST/tapa.git
 bash build_tapa.sh
 ```
+
+
 
 ## Run the first example
 
