@@ -10,8 +10,6 @@ cd tapa
 
 CMAKE="/opt/cmake-3.28.3-linux-x86_64/bin/cmake"
 
-export CXXFLAGS=-isystem\ $(pwd)/../fpga-runtime/build/include
-
 echo $CXXFLAGS
 #exit
 
